@@ -1,5 +1,6 @@
 import React from 'react';
 import AllCharacters from '../AllCharacters.jsx';
+import Detail from '../Detail.jsx';
 import {
   BrowserRouter as Router, 
   Route,
@@ -10,16 +11,16 @@ export default function App() {
     <Router>
       <switch>
         <Route 
-          path="/pokedex" 
+          path="/"
+          onClick={() => <Route 
+            path="/:name" 
+            exact
+            render={(routerProps) => 
+              <Detail {...routerProps} />}
+          />}
           exact
           render={(routerProps) => 
             <AllCharacters {...routerProps} />} 
-        />
-        <Route 
-          path="/detail/:pokemonName" 
-          exact
-          render={(routerProps) => 
-            <DetailCharacters {...routerProps} />} 
         />
       </switch>
     </Router>
